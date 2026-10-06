@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas Domingueras</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:,">
+        <!-- Manifest CORREGIDO -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2ecc71">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <header>
+            <h1>🛍️ Ventas Domingueras</h1>
+            <p id="fecha"></p>
+        </header>
+
+        <section class="resumen">
+
+            <div class="card principal">
+                <span>Ventas Netas</span>
+                <h2 id="neto">0.00 €</h2>
+            </div>
+
+            <div class="grid">
+
+                <div class="card">
+                    <span>Efectivo</span>
+                    <h3 id="efectivo">0.00 €</h3>
+                </div>
+
+                <div class="card">
+                    <span>Tarjeta</span>
+                    <h3 id="tarjeta">0.00 €</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="acciones">
+
+            <button id="btnVenta" class="verde">➕ Nueva Venta</button>
+            <button id="btnDevolucion" class="rojo">↩️ Nueva Devolución</button>
+            <button id="btnGastos" class="secundario">➕ Gastos</button>
+            <button id="btnJornada" class="verde">➕ Finalizar Jornada</button>
+            <button id="btnHistorial" class="secundario">📚 Historial</button>
+
+        </section>
+
+        <section class="lista">
+            <h3>Últimos movimientos</h3>
+            <div id="movimientos"></div>
+        </section>
+
+    </div>
+
+    <!-- Modal de ventas -->
+    <div id="modal" class="modal oculto">
+        <div class="modal-content">
+            <h2 id="tituloModal">Nueva Venta</h2>
+
+            <input type="text" id="descripcion" placeholder="Descripción">
+            <input type="number" id="importe" step="0.01" placeholder="Importe">
+
+            <div class="pagos">
+                <label><input type="radio" name="pago" value="efectivo" checked> Efectivo</label>
+                <label><input type="radio" name="pago" value="tarjeta"> Tarjeta</label>
+            </div>
+
+            <button id="guardar" class="verde">Guardar</button>
+            <button id="cancelar" class="secundario">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal historial -->
+    <div id="modalHistorial" class="modal oculto">
+        <div class="modal-content">
+            <h2>Historial de Jornadas</h2>
+
+            <label for="fechaBusqueda">Seleccionar fecha</label>
+            <input type="date" id="fechaBusqueda">
+
+            <div style="margin-top:12px;">
+                <button id="buscarJornadas" class="verde">Buscar</button>
+                <button id="cerrarHistorial" class="secundario">Cerrar</button>
+            </div>
+
+            <hr style="margin:12px 0;">
+
+            <div id="resultadosHistorial">
+                <p class="muted">Selecciona una fecha y pulsa Buscar.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <!-- Service Worker CORREGIDO -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .catch(() => {});
+    }
+    </script>
+
+</body>
+</html>

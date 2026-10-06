@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #333;
+}
+
+.app {
+    max-width: 500px;
+    margin: auto;
+    padding: 16px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.principal h2 {
+    color: #00a86b;
+    margin-top: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.verde {
+    background: #00a86b;
+    color: white;
+}
+
+.rojo {
+    background: #e74c3c;
+    color: white;
+}
+
+.secundario {
+    background: #888;
+    color: white;
+}
+
+.lista {
+    margin-top: 20px;
+}
+
+.movimiento {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+}
+
+.venta {
+    border-left: 5px solid #00a86b;
+}
+
+.devolucion {
+    border-left: 5px solid #e74c3c;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pagos {
+    margin: 15px 0;
+}
+
+.pagos label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.oculto {
+    display: none;
+}
