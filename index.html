@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:,">
-        <!-- Manifest CORREGIDO -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2ecc71">
 </head>
@@ -79,24 +78,22 @@
         </div>
     </div>
 
-    <!-- Modal historial -->
+    <!-- Modal historial COMPLETO -->
     <div id="modalHistorial" class="modal oculto">
         <div class="modal-content">
             <h2>Historial de Jornadas</h2>
 
-            <label for="fechaBusqueda">Seleccionar fecha</label>
-            <input type="date" id="fechaBusqueda">
+            <label for="selectFechaJornada">Seleccionar fecha</label>
+            <select id="selectFechaJornada"></select>
 
             <div style="margin-top:12px;">
-                <button id="buscarJornadas" class="verde">Buscar</button>
+                <button id="buscarJornadas" class="verde">Ver Jornada</button>
                 <button id="cerrarHistorial" class="secundario">Cerrar</button>
             </div>
 
             <hr style="margin:12px 0;">
 
-            <div id="resultadosHistorial">
-                <p class="muted">Selecciona una fecha y pulsa Buscar.</p>
-            </div>
+            <div id="resultadoHistorial"></div>
         </div>
     </div>
 
@@ -105,7 +102,7 @@
     <!-- Service Worker CORREGIDO -->
     <script>
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('./sw.js')
             .catch(() => {});
     }
     </script>
