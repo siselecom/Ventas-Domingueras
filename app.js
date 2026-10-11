@@ -271,5 +271,56 @@ function actualizar() {
     document.getElementById("tarjeta").innerText = tarjeta.toFixed(2) + " €";
     document.getElementById("neto").innerText = (efectivo + tarjeta).toFixed(2) + " €";
 }
+document.getElementById("btnExportar").addEventListener("click", () => {
+    const jornadas = JSON.parse(localStorage.getItem("jornadas")) || [];
+
+    if (jornadas.length === 0) {
+        alert("No hay jornadas para exportar.");
+        return;
+    }
+
+    const blob = new Blob([JSON.stringify(jornadas, null, 2)], {
+        type: "application/json"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = "jornadas_backup.json";
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+    alert("Jornadas exportadas correctamente.");
+});
+document.getElementById("btnImportar").addEventListener("click", () => {
+    document.getElementById("inputImportar").click();
+});
+
+document.getElementById("inputImportar").addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        try {
+            const data = JSON.parse(e.target.result);
+
+            if (!Array.isArray(data)) {
+                alert("El archivo no es válido.");
+                return;
+            }
+
+            localStorage.setItem("jornadas", JSON.stringify(data));
+            alert("Jornadas importadas correctamente.");
+        } catch (error) {
+            alert("Error al leer el archivo.");
+        }
+    };
+
+    reader.readAsText(file);
+});
 
 actualizar();
