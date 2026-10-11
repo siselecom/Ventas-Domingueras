@@ -1,4 +1,6 @@
-const CACHE_NAME = 'ventas-domingueras-v1';
+// 🔥 Cambia el nombre del caché para forzar actualización
+const CACHE_NAME = 'ventas-domingueras-v3';
+
 const FILES_TO_CACHE = [
   'index.html',
   'style.css',
@@ -8,6 +10,7 @@ const FILES_TO_CACHE = [
   'icons/icon-512.png'
 ];
 
+// INSTALACIÓN
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
@@ -15,6 +18,7 @@ self.addEventListener('install', event => {
   self.skipWaiting();
 });
 
+// ACTIVACIÓN
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -30,23 +34,28 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
+// FETCH
 self.addEventListener('fetch', event => {
-  const request = event.request;
+  const req = event.request;
 
-  // Navegación (abrir desde el icono)
-  if (request.mode === 'navigate') {
+  // 🔥 CSS y JS siempre desde la red (si falla, usa caché)
+  if (req.url.endsWith('.css') || req.url.endsWith('.js')) {
     event.respondWith(
-      caches.match('index.html').then(response => {
-        return response || fetch('index.html');
-      })
+      fetch(req).catch(() => caches.match(req))
     );
     return;
   }
 
-  // Archivos normales
+  // Navegación (abrir desde el icono)
+  if (req.mode === 'navigate') {
+    event.respondWith(
+      caches.match('index.html').then(res => res || fetch('index.html'))
+    );
+    return;
+  }
+
+  // Archivos normales (cache-first)
   event.respondWith(
-    caches.match(request).then(response => {
-      return response || fetch(request);
-    })
+    caches.match(req).then(res => res || fetch(req))
   );
 });
