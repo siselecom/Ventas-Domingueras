@@ -1,5 +1,5 @@
 // 🔥 Cambia el nombre del caché para forzar actualización
-const CACHE_NAME = 'ventas-domingueras-v3';
+const CACHE_NAME = "ventas-domingueras-" + Date.now();
 
 const FILES_TO_CACHE = [
   'index.html',
