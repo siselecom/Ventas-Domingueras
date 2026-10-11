@@ -176,7 +176,9 @@ buscarJornadasBtn.addEventListener("click", () => {
         <p><strong>Tarjeta:</strong> ${jornada.tarjeta} €</p>
 
         <h4>Movimientos</h4>
-        <ul>${movimientosHtml}</ul>
+        <div class="scroll-movimientos">
+            <ul>${movimientosHtml}</ul>
+        </div>
 
         <button class="verde" onclick="imprimirPDF('${jornada.fecha}')">Imprimir PDF</button>
     `;

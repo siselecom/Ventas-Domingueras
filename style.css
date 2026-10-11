@@ -128,3 +128,26 @@ button {
 .oculto {
     display: none;
 }
+/* Contenedor con scroll para los movimientos del historial */
+.scroll-movimientos {
+    max-height: 300px;      /* Ajusta según tu móvil */
+    overflow-y: auto;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+}
+/* Evita que el modal se salga de la pantalla */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;       /* 90% de la altura del móvil */
+    overflow: hidden;
+}
+
+/* El contenido del historial se vuelve scrollable */
+#resultadoHistorial {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 10px;
+}
