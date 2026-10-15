@@ -31,7 +31,12 @@ document.getElementById("btnGastos").addEventListener("click", () => {
     modal.classList.remove("oculto");
 });
 
-document.getElementById("btnJornada").addEventListener("click", finalizarJornada);
+document.getElementById("btnJornada").addEventListener("click", () => {
+    const confirmar = confirm("¿Está seguro? Recuerde introducir todos los gastos antes de finalizar la jornada.");
+    if (confirmar) {
+        finalizarJornada();
+    }
+});
 
 // =========================
 // FINALIZAR JORNADA
